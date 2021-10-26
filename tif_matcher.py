@@ -26,7 +26,7 @@ def match_image(image_path, dir2):
       print(image_path, image2_path)
       # return matching sets
       return [image_path, image2_path]
-  return
+  return None
 
 
 ## Match the two datasets
