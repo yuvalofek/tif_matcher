@@ -22,7 +22,7 @@ def match_image(image_path, dir2):
     image2_path = os.path.join(dir2, image2)
     with rasterio.open(image2_path, 'r') as src:
         img2 = src.read()
-    if img2 == img:
+    if (img2 == img).all():
       print(image_path, image2_path)
       # return matching sets
       return [image_path, image2_path]
