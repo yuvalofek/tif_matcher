@@ -1,6 +1,5 @@
 import os
 import rasterio
-import matplotlib.pyplot as plt
 import concurrent.futures as cp
 import json
 import argparse
