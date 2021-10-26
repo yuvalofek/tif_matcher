@@ -12,8 +12,10 @@ parser.add_argument('--out_file', type=str, defualt='matched_tifs', help='Name o
 
 
 
-def match_image(image_path, dir2, delimiter='_'):
-
+def match_image(image_path, dir2):
+  """
+  Find image path in dir2 that matches image in image_path
+  """
   with rasterio.open(image_path, 'r') as src:
       img = src.read()
   for image2 in os.listdir(dir2):
@@ -33,7 +35,7 @@ matches = []
 with cp.ThreadPoolExecutor() as ex:
   for image in os.listdir(dir1):
     image_path = os.path.join(dir1, image)
-    matches_th.append(ex.submit(match_image, image_path, dir2, delimiter='_'))
+    matches_th.append(ex.submit(match_image, image_path, dir2))
 for match in cp.as_completed(matches_th):
     matches.append(match.result())
 
