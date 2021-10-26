@@ -8,7 +8,6 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--dir1', type=str, help='')
 parser.add_argument('--dir1', type=str, help='')
-parser.add_argument('--delimiter', type=str, default='_', help='delimiter to split names ')
 parser.add_argument('--out_file', type=str, defualt='matched_tifs', help='Name of output file')
 
 
@@ -24,7 +23,7 @@ def match_image(image_path, dir2, delimiter='_'):
     if img2 == img:
       print(image_path, image2_path)
       # return matching sets
-      return [image_path.split(delimiter)[0], image2_path.split(delimiter)[0]]
+      return [image_path, image2_path]
   return
 
 
