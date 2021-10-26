@@ -9,6 +9,9 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--dir1', type=str, help='Input dir 1')
 parser.add_argument('--dir2', type=str, help='Input dir 2')
 parser.add_argument('--out_file', type=str, default='./matched_tifs.json', help='Name of output file')
+parser.add_argument('--key_word1', type=str, default='', help='Key word to select only some images from dir1')
+parser.add_argument('--key_word2', type=str, default='', help='Key word to select only some images from dir2')
+
 args = parser.parse_args()
 
 
@@ -19,6 +22,8 @@ def match_image(image_path, dir2):
   with rasterio.open(image_path, 'r') as src:
       img = src.read()
   for image2 in os.listdir(dir2):
+    if args.key_word2 not in image2:
+      continue
     image2_path = os.path.join(dir2, image2)
     with rasterio.open(image2_path, 'r') as src:
         img2 = src.read()
@@ -34,6 +39,8 @@ matches_th = []
 matches = []
 with cp.ThreadPoolExecutor() as ex:
   for image in os.listdir(args.dir1):
+    if args.key_word1 not in image:
+      continue
     image_path = os.path.join(args.dir1, image)
     matches_th.append(ex.submit(match_image, image_path, args.dir2))
 for match in cp.as_completed(matches_th):
