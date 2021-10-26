@@ -8,7 +8,7 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument('--dir1', type=str, help='')
 parser.add_argument('--dir1', type=str, help='')
-parser.add_argument('--out_file', type=str, defualt='matched_tifs', help='Name of output file')
+parser.add_argument('--out_file', type=str, default='./matched_tifs.json', help='Name of output file')
 
 
 
