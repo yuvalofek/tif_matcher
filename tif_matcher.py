@@ -19,7 +19,7 @@ def match_image(image_path, dir2):
   with rasterio.open(image_path, 'r') as src:
       img = src.read()
   for image2 in os.listdir(dir2):
-    image2_path = os.path.join(dir1, image2)
+    image2_path = os.path.join(dir2, image2)
     with rasterio.open(image2_path, 'r') as src:
         img2 = src.read()
     if img2 == img:
