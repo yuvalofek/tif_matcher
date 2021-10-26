@@ -39,6 +39,5 @@ with cp.ThreadPoolExecutor() as ex:
 for match in cp.as_completed(matches_th):
     matches.append(match.result())
 
-os.makedirs(args.out_file)
 with open(args.out_file, 'w') as wf:
   json.dump(matches, wf)
