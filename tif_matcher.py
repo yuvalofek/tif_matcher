@@ -14,14 +14,14 @@ parser.add_argument('--key_word2', type=str, default='', help='Key word to selec
 args = parser.parse_args()
 
 
-def match_image(image_path, dir2):
+def match_image(image_path, dir2, key_word):
   """
   Find image path in dir2 that matches image in image_path
   """
   with rasterio.open(image_path, 'r') as src:
       img = src.read()
   for image2 in os.listdir(dir2):
-    if args.key_word2 not in image2:
+    if args.key_word not in image2:
       continue
     image2_path = os.path.join(dir2, image2)
     with rasterio.open(image2_path, 'r') as src:
@@ -41,7 +41,7 @@ with cp.ThreadPoolExecutor() as ex:
     if args.key_word1 not in image:
       continue
     image_path = os.path.join(args.dir1, image)
-    matches_th.append(ex.submit(match_image, image_path, args.dir2))
+    matches_th.append(ex.submit(match_image, image_path, args.dir2, args.key_word2))
 for match in cp.as_completed(matches_th):
     matches.append(match.result())
 
