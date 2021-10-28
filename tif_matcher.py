@@ -39,7 +39,7 @@ def match_image(img, image_path, dir2, key_word, normalize=False, verbose=False)
 ## Match the two datasets
 matches_th = []
 matches = []
-with cp.ThreadPoolExecutor() as ex:
+with cp.ProcessPoolExecutor() as ex:
   for image in os.listdir(args.dir1):
     if args.key_word1 not in image:
       continue
