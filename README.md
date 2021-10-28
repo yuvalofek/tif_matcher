@@ -1,5 +1,5 @@
 # tif_matcher
-matches .tif images across two directories
+Matches .tif images across two directories by image (when your naming is off)
 
 
 ## Requirements:
