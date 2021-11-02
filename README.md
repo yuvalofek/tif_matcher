@@ -1,5 +1,5 @@
 # tif_matcher
-Matches .tif images across two directories by image (when your naming is off)
+Matches .tif images across two directories by image (when your naming is off). We use concurrent.futures to get incredible speedup here (60x faster when I ran the code) 
 
 
 ## Requirements:
